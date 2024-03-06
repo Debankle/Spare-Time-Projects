@@ -1,3 +1,5 @@
+"""Simple implementation of a spiral printing function"""
+
 import random
 from enum import Enum
 import math
@@ -14,7 +16,7 @@ class Direction(Enum):
     RIGHT = 'right'
 
 
-class SpiralPrint(object):
+class SpiralPrint():
     """
     SpiralPrint Class definition
 
@@ -35,6 +37,16 @@ class SpiralPrint(object):
         """
         self._max_num = max_num
         self._start_num = start_num
+        self._dir = Direction.RIGHT
+
+        self._calculate()
+
+    def _calculate(self):
+        """
+        Calculate the values in each position of the spiral array
+        as the spiral goes around. Iterates from the start number to
+        the max number in a clockwise spiral
+        """
 
         self._num_nums = self._max_num + 1 - self._start_num
         self._size = math.ceil(math.sqrt(self._num_nums))
@@ -46,16 +58,7 @@ class SpiralPrint(object):
 
         self._i = self._start_num
         self._spiral_nums[self._x][self._y] = self._i
-        self._dir = Direction.RIGHT
 
-        self._calculate()
-
-    def _calculate(self):
-        """
-        Calculate the values in each position of the spiral array
-        as the spiral goes around. Iterates from the start number to
-        the max number in a clockwise spiral
-        """
         while self._i < self._max_num:
             self._i += 1
             self._move_current_point()
@@ -94,11 +97,11 @@ class SpiralPrint(object):
         """
         spiral = ''
         for line in self._spiral_nums:
-            for num in line:
-                if num is None:
+            for item in line:
+                if item is None:
                     spiral += ' ' * (self._max_size + 1)
                 else:
-                    spiral += ' ' * (self._max_size - len(str(num))) + str(num) + ' '
+                    spiral += ' ' * (self._max_size - len(str(item))) + str(item) + ' '
             spiral += '\n'
         return spiral
 

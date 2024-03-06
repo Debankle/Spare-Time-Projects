@@ -1,3 +1,5 @@
+"""Implementation of Tower of Hanoi problem in python"""
+
 def hanoi(n,start,end,temp):
     """
     Solves the Tower of Hanoi problem recursively
